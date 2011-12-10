@@ -7,9 +7,12 @@
 //
 
 #import "BSFlipsideViewController.h"
+#import "BSWebAuthViewController.h"
 
-@interface BSMainViewController : UIViewController <BSFlipsideViewControllerDelegate>
+@interface BSMainViewController : UIViewController <BSFlipsideViewControllerDelegate,BSWebAuthViewControllerDelegate>
 
 - (IBAction)showInfo:(id)sender;
+
+-(IBAction) onAuthenticate:(id) sender;
 
 @end

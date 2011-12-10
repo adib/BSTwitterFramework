@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'OAuthCore' target in the 'OAuthCore' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

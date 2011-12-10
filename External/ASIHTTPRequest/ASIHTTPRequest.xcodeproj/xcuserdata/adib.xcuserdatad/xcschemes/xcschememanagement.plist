@@ -4,25 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>BSTwitterFramework 2.xcscheme</key>
+		<key>ASIHTTPRequest.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>BSTwitterFramework.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>C07C867D149314ED00F01991</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C0C3592614920F6500FF7AF5</key>
+		<key>C0AEE0211492178F00140F75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
