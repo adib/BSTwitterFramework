@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C0C3592614920F6500FF7AF5"
-               BuildableName = "BSTwitterFrameworkTest.app"
-               BlueprintName = "BSTwitterFrameworkTest"
+               BlueprintIdentifier = "C07C867D149314ED00F01991"
+               BuildableName = "libBSTwitterFramework.a"
+               BlueprintName = "BSTwitterFramework"
                ReferencedContainer = "container:BSTwitterFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,15 +28,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C0C3592614920F6500FF7AF5"
-            BuildableName = "BSTwitterFrameworkTest.app"
-            BlueprintName = "BSTwitterFrameworkTest"
-            ReferencedContainer = "container:BSTwitterFramework.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
@@ -46,15 +37,6 @@
       buildConfiguration = "Debug"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C0C3592614920F6500FF7AF5"
-            BuildableName = "BSTwitterFrameworkTest.app"
-            BlueprintName = "BSTwitterFrameworkTest"
-            ReferencedContainer = "container:BSTwitterFramework.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -64,15 +46,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C0C3592614920F6500FF7AF5"
-            BuildableName = "BSTwitterFrameworkTest.app"
-            BlueprintName = "BSTwitterFrameworkTest"
-            ReferencedContainer = "container:BSTwitterFramework.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

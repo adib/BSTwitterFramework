@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C07C865614930F9F00F01991 /* BSTwitterFrameworkTest-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07C865514930F9F00F01991 /* BSTwitterFrameworkTest-Info.plist */; };
+		C07C86631493111300F01991 /* libASIHTTPRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C8662149310FD00F01991 /* libASIHTTPRequest.a */; };
+		C07C86741493117F00F01991 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C86731493117F00F01991 /* libz.dylib */; };
+		C07C86761493118800F01991 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C86751493118800F01991 /* SystemConfiguration.framework */; };
+		C07C86781493119100F01991 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C86771493119100F01991 /* Security.framework */; };
+		C07C867F149314ED00F01991 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C3592D14920F6500FF7AF5 /* Foundation.framework */; };
+		C07C8685149314ED00F01991 /* BSTwitterFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C8684149314ED00F01991 /* BSTwitterFramework.m */; };
+		C07C86891493153700F01991 /* libBSTwitterFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C867E149314ED00F01991 /* libBSTwitterFramework.a */; };
+		C07C868E1493155800F01991 /* BSWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C868D1493155800F01991 /* BSWebAuthViewController.m */; };
+		C07C86A714931B6D00F01991 /* BSWebAuthViewController_Phone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07C86A614931B6D00F01991 /* BSWebAuthViewController_Phone.xib */; };
+		C07C86E1149377AF00F01991 /* libOAuthCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C86DE1493779C00F01991 /* libOAuthCore.a */; };
+		C07C86E41493789900F01991 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C86E31493789900F01991 /* Secrets.m */; };
 		C0C3592C14920F6500FF7AF5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C3592B14920F6500FF7AF5 /* UIKit.framework */; };
 		C0C3592E14920F6500FF7AF5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C3592D14920F6500FF7AF5 /* Foundation.framework */; };
 		C0C3593014920F6500FF7AF5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C3592F14920F6500FF7AF5 /* CoreGraphics.framework */; };
@@ -17,17 +29,73 @@
 		C0C3594214920F6500FF7AF5 /* BSFlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C3594114920F6500FF7AF5 /* BSFlipsideViewController.m */; };
 		C0C3594514920F6500FF7AF5 /* BSMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C3594314920F6500FF7AF5 /* BSMainViewController.xib */; };
 		C0C3594814920F6500FF7AF5 /* BSFlipsideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C3594614920F6500FF7AF5 /* BSFlipsideViewController.xib */; };
+		C0C6954314938167002F4D30 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C6954214938167002F4D30 /* CFNetwork.framework */; };
+		C0C695451493817F002F4D30 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C695441493817F002F4D30 /* MobileCoreServices.framework */; };
+		C0C695471493C09C002F4D30 /* sample_splash.html in Resources */ = {isa = PBXBuildFile; fileRef = C0C695461493C09C002F4D30 /* sample_splash.html */; };
+		C0C695491493C34A002F4D30 /* BSWebAuthViewController_Pad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C695481493C34A002F4D30 /* BSWebAuthViewController_Pad.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C07C8661149310FD00F01991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C07C865A149310FD00F01991 /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C0AEE0221492178F00140F75;
+			remoteInfo = "ASIHTTPRequest-iOS";
+		};
+		C07C86641493112100F01991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C07C865A149310FD00F01991 /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C0AEE0211492178F00140F75;
+			remoteInfo = "ASIHTTPRequest-iOS";
+		};
+		C07C868A1493153D00F01991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0C3591E14920F6500FF7AF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C07C867D149314ED00F01991;
+			remoteInfo = BSTwitterFramework;
+		};
+		C07C86DD1493779C00F01991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C07C86D61493779B00F01991 /* OAuthCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C07C86B414932ED900F01991;
+			remoteInfo = OAuthCore;
+		};
+		C07C86DF149377AA00F01991 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C07C86D61493779B00F01991 /* OAuthCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C07C86B314932ED900F01991;
+			remoteInfo = OAuthCore;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		C0C3592714920F6500FF7AF5 /* BSTwitterFramework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSTwitterFramework.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C07C865514930F9F00F01991 /* BSTwitterFrameworkTest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BSTwitterFrameworkTest-Info.plist"; sourceTree = "<group>"; };
+		C07C86571493102500F01991 /* BSTwitterFrameworkTest-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSTwitterFrameworkTest-Prefix.pch"; sourceTree = "<group>"; };
+		C07C865A149310FD00F01991 /* ASIHTTPRequest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ASIHTTPRequest.xcodeproj; sourceTree = "<group>"; };
+		C07C86731493117F00F01991 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C07C86751493118800F01991 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C07C86771493119100F01991 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C07C867E149314ED00F01991 /* libBSTwitterFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBSTwitterFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C07C8682149314ED00F01991 /* BSTwitterFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BSTwitterFramework-Prefix.pch"; sourceTree = "<group>"; };
+		C07C8683149314ED00F01991 /* BSTwitterFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTwitterFramework.h; sourceTree = "<group>"; };
+		C07C8684149314ED00F01991 /* BSTwitterFramework.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTwitterFramework.m; sourceTree = "<group>"; };
+		C07C868C1493155800F01991 /* BSWebAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSWebAuthViewController.h; sourceTree = "<group>"; };
+		C07C868D1493155800F01991 /* BSWebAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSWebAuthViewController.m; sourceTree = "<group>"; };
+		C07C86A614931B6D00F01991 /* BSWebAuthViewController_Phone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSWebAuthViewController_Phone.xib; sourceTree = "<group>"; };
+		C07C86D61493779B00F01991 /* OAuthCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthCore.xcodeproj; path = OAuthCore/OAuthCore.xcodeproj; sourceTree = "<group>"; };
+		C07C86E21493789900F01991 /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		C07C86E31493789900F01991 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		C0C3592714920F6500FF7AF5 /* BSTwitterFrameworkTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSTwitterFrameworkTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C3592B14920F6500FF7AF5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C0C3592D14920F6500FF7AF5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C0C3592F14920F6500FF7AF5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C0C3593314920F6500FF7AF5 /* BSTwitterFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSTwitterFramework-Info.plist"; sourceTree = "<group>"; };
 		C0C3593514920F6500FF7AF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C0C3593714920F6500FF7AF5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C0C3593914920F6500FF7AF5 /* BSTwitterFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BSTwitterFramework-Prefix.pch"; sourceTree = "<group>"; };
 		C0C3593A14920F6500FF7AF5 /* BSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAppDelegate.h; sourceTree = "<group>"; };
 		C0C3593B14920F6500FF7AF5 /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
 		C0C3593D14920F6500FF7AF5 /* BSMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMainViewController.h; sourceTree = "<group>"; };
@@ -36,13 +104,33 @@
 		C0C3594114920F6500FF7AF5 /* BSFlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSFlipsideViewController.m; sourceTree = "<group>"; };
 		C0C3594414920F6500FF7AF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BSMainViewController.xib; sourceTree = "<group>"; };
 		C0C3594714920F6500FF7AF5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BSFlipsideViewController.xib; sourceTree = "<group>"; };
+		C0C6954214938167002F4D30 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C0C695441493817F002F4D30 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C0C695461493C09C002F4D30 /* sample_splash.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sample_splash.html; sourceTree = "<group>"; };
+		C0C695481493C34A002F4D30 /* BSWebAuthViewController_Pad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSWebAuthViewController_Pad.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C07C867B149314ED00F01991 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C07C867F149314ED00F01991 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0C3592414920F6500FF7AF5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C695451493817F002F4D30 /* MobileCoreServices.framework in Frameworks */,
+				C0C6954314938167002F4D30 /* CFNetwork.framework in Frameworks */,
+				C07C86E1149377AF00F01991 /* libOAuthCore.a in Frameworks */,
+				C07C86891493153700F01991 /* libBSTwitterFramework.a in Frameworks */,
+				C07C86781493119100F01991 /* Security.framework in Frameworks */,
+				C07C86761493118800F01991 /* SystemConfiguration.framework in Frameworks */,
+				C07C86741493117F00F01991 /* libz.dylib in Frameworks */,
+				C07C86631493111300F01991 /* libASIHTTPRequest.a in Frameworks */,
 				C0C3592C14920F6500FF7AF5 /* UIKit.framework in Frameworks */,
 				C0C3592E14920F6500FF7AF5 /* Foundation.framework in Frameworks */,
 				C0C3593014920F6500FF7AF5 /* CoreGraphics.framework in Frameworks */,
@@ -52,9 +140,93 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C07C865314930F0B00F01991 /* BSTwitterFramework */ = {
+			isa = PBXGroup;
+			children = (
+				C07C8679149314A300F01991 /* iOS */,
+				C07C86A514931B0700F01991 /* iOS-Resources */,
+				C07C8683149314ED00F01991 /* BSTwitterFramework.h */,
+				C07C8684149314ED00F01991 /* BSTwitterFramework.m */,
+				C07C8681149314ED00F01991 /* Supporting Files */,
+			);
+			path = BSTwitterFramework;
+			sourceTree = SOURCE_ROOT;
+		};
+		C07C8658149310BF00F01991 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				C07C86D51493776100F01991 /* OAuthCore */,
+				C07C8659149310E200F01991 /* ASIHTTPRequest */,
+			);
+			path = External;
+			sourceTree = SOURCE_ROOT;
+		};
+		C07C8659149310E200F01991 /* ASIHTTPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				C07C865A149310FD00F01991 /* ASIHTTPRequest.xcodeproj */,
+			);
+			path = ASIHTTPRequest;
+			sourceTree = "<group>";
+		};
+		C07C865B149310FD00F01991 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C07C8662149310FD00F01991 /* libASIHTTPRequest.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C07C8679149314A300F01991 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C07C868C1493155800F01991 /* BSWebAuthViewController.h */,
+				C07C868D1493155800F01991 /* BSWebAuthViewController.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		C07C8681149314ED00F01991 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C07C8682149314ED00F01991 /* BSTwitterFramework-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C07C86A514931B0700F01991 /* iOS-Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C07C86A614931B6D00F01991 /* BSWebAuthViewController_Phone.xib */,
+				C0C695481493C34A002F4D30 /* BSWebAuthViewController_Pad.xib */,
+			);
+			path = "iOS-Resources";
+			sourceTree = "<group>";
+		};
+		C07C86D51493776100F01991 /* OAuthCore */ = {
+			isa = PBXGroup;
+			children = (
+				C07C86D61493779B00F01991 /* OAuthCore.xcodeproj */,
+			);
+			name = OAuthCore;
+			sourceTree = "<group>";
+		};
+		C07C86D71493779B00F01991 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C07C86DE1493779C00F01991 /* libOAuthCore.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C0C3591C14920F6500FF7AF5 = {
 			isa = PBXGroup;
 			children = (
+				C0C695441493817F002F4D30 /* MobileCoreServices.framework */,
+				C0C6954214938167002F4D30 /* CFNetwork.framework */,
+				C07C86731493117F00F01991 /* libz.dylib */,
+				C07C8658149310BF00F01991 /* External */,
+				C07C865314930F0B00F01991 /* BSTwitterFramework */,
 				C0C3593114920F6500FF7AF5 /* BSTwitterFrameworkTest */,
 				C0C3592A14920F6500FF7AF5 /* Frameworks */,
 				C0C3592814920F6500FF7AF5 /* Products */,
@@ -64,7 +236,8 @@
 		C0C3592814920F6500FF7AF5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C0C3592714920F6500FF7AF5 /* BSTwitterFramework.app */,
+				C0C3592714920F6500FF7AF5 /* BSTwitterFrameworkTest.app */,
+				C07C867E149314ED00F01991 /* libBSTwitterFramework.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,6 +245,8 @@
 		C0C3592A14920F6500FF7AF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C07C86771493119100F01991 /* Security.framework */,
+				C07C86751493118800F01991 /* SystemConfiguration.framework */,
 				C0C3592B14920F6500FF7AF5 /* UIKit.framework */,
 				C0C3592D14920F6500FF7AF5 /* Foundation.framework */,
 				C0C3592F14920F6500FF7AF5 /* CoreGraphics.framework */,
@@ -82,6 +257,10 @@
 		C0C3593114920F6500FF7AF5 /* BSTwitterFrameworkTest */ = {
 			isa = PBXGroup;
 			children = (
+				C07C86E21493789900F01991 /* Secrets.h */,
+				C07C86E31493789900F01991 /* Secrets.m */,
+				C07C86571493102500F01991 /* BSTwitterFrameworkTest-Prefix.pch */,
+				C07C865514930F9F00F01991 /* BSTwitterFrameworkTest-Info.plist */,
 				C0C3593A14920F6500FF7AF5 /* BSAppDelegate.h */,
 				C0C3593B14920F6500FF7AF5 /* BSAppDelegate.m */,
 				C0C3593D14920F6500FF7AF5 /* BSMainViewController.h */,
@@ -91,6 +270,7 @@
 				C0C3594314920F6500FF7AF5 /* BSMainViewController.xib */,
 				C0C3594614920F6500FF7AF5 /* BSFlipsideViewController.xib */,
 				C0C3593214920F6500FF7AF5 /* Supporting Files */,
+				C0C695461493C09C002F4D30 /* sample_splash.html */,
 			);
 			path = BSTwitterFrameworkTest;
 			sourceTree = "<group>";
@@ -98,20 +278,45 @@
 		C0C3593214920F6500FF7AF5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C0C3593314920F6500FF7AF5 /* BSTwitterFramework-Info.plist */,
 				C0C3593414920F6500FF7AF5 /* InfoPlist.strings */,
 				C0C3593714920F6500FF7AF5 /* main.m */,
-				C0C3593914920F6500FF7AF5 /* BSTwitterFramework-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C07C867C149314ED00F01991 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		C0C3592614920F6500FF7AF5 /* BSTwitterFramework */ = {
+		C07C867D149314ED00F01991 /* BSTwitterFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C0C3594B14920F6500FF7AF5 /* Build configuration list for PBXNativeTarget "BSTwitterFramework" */;
+			buildConfigurationList = C07C8686149314ED00F01991 /* Build configuration list for PBXNativeTarget "BSTwitterFramework" */;
+			buildPhases = (
+				C07C867A149314ED00F01991 /* Sources */,
+				C07C867B149314ED00F01991 /* Frameworks */,
+				C07C867C149314ED00F01991 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BSTwitterFramework;
+			productName = BSTwitterFramework;
+			productReference = C07C867E149314ED00F01991 /* libBSTwitterFramework.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C0C3592614920F6500FF7AF5 /* BSTwitterFrameworkTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0C3594B14920F6500FF7AF5 /* Build configuration list for PBXNativeTarget "BSTwitterFrameworkTest" */;
 			buildPhases = (
 				C0C3592314920F6500FF7AF5 /* Sources */,
 				C0C3592414920F6500FF7AF5 /* Frameworks */,
@@ -120,10 +325,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				C07C86E0149377AA00F01991 /* PBXTargetDependency */,
+				C07C868B1493153D00F01991 /* PBXTargetDependency */,
+				C07C86651493112100F01991 /* PBXTargetDependency */,
 			);
-			name = BSTwitterFramework;
+			name = BSTwitterFrameworkTest;
 			productName = BSTwitterFramework;
-			productReference = C0C3592714920F6500FF7AF5 /* BSTwitterFramework.app */;
+			productReference = C0C3592714920F6500FF7AF5 /* BSTwitterFrameworkTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -145,12 +353,41 @@
 			mainGroup = C0C3591C14920F6500FF7AF5;
 			productRefGroup = C0C3592814920F6500FF7AF5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C07C865B149310FD00F01991 /* Products */;
+					ProjectRef = C07C865A149310FD00F01991 /* ASIHTTPRequest.xcodeproj */;
+				},
+				{
+					ProductGroup = C07C86D71493779B00F01991 /* Products */;
+					ProjectRef = C07C86D61493779B00F01991 /* OAuthCore.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				C0C3592614920F6500FF7AF5 /* BSTwitterFramework */,
+				C0C3592614920F6500FF7AF5 /* BSTwitterFrameworkTest */,
+				C07C867D149314ED00F01991 /* BSTwitterFramework */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C07C8662149310FD00F01991 /* libASIHTTPRequest.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = libASIHTTPRequest.a;
+			path = "libASIHTTPRequest-iOS.a";
+			remoteRef = C07C8661149310FD00F01991 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C07C86DE1493779C00F01991 /* libOAuthCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOAuthCore.a;
+			remoteRef = C07C86DD1493779C00F01991 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C0C3592514920F6500FF7AF5 /* Resources */ = {
@@ -160,12 +397,24 @@
 				C0C3593614920F6500FF7AF5 /* InfoPlist.strings in Resources */,
 				C0C3594514920F6500FF7AF5 /* BSMainViewController.xib in Resources */,
 				C0C3594814920F6500FF7AF5 /* BSFlipsideViewController.xib in Resources */,
+				C07C865614930F9F00F01991 /* BSTwitterFrameworkTest-Info.plist in Resources */,
+				C07C86A714931B6D00F01991 /* BSWebAuthViewController_Phone.xib in Resources */,
+				C0C695471493C09C002F4D30 /* sample_splash.html in Resources */,
+				C0C695491493C34A002F4D30 /* BSWebAuthViewController_Pad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C07C867A149314ED00F01991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C07C8685149314ED00F01991 /* BSTwitterFramework.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C0C3592314920F6500FF7AF5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,10 +423,30 @@
 				C0C3593C14920F6500FF7AF5 /* BSAppDelegate.m in Sources */,
 				C0C3593F14920F6500FF7AF5 /* BSMainViewController.m in Sources */,
 				C0C3594214920F6500FF7AF5 /* BSFlipsideViewController.m in Sources */,
+				C07C868E1493155800F01991 /* BSWebAuthViewController.m in Sources */,
+				C07C86E41493789900F01991 /* Secrets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C07C86651493112100F01991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ASIHTTPRequest-iOS";
+			targetProxy = C07C86641493112100F01991 /* PBXContainerItemProxy */;
+		};
+		C07C868B1493153D00F01991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C07C867D149314ED00F01991 /* BSTwitterFramework */;
+			targetProxy = C07C868A1493153D00F01991 /* PBXContainerItemProxy */;
+		};
+		C07C86E0149377AA00F01991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuthCore;
+			targetProxy = C07C86DF149377AA00F01991 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C0C3593414920F6500FF7AF5 /* InfoPlist.strings */ = {
@@ -207,10 +476,33 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C07C8687149314ED00F01991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/BSTwitterFramework.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BSTwitterFramework/BSTwitterFramework-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C07C8688149314ED00F01991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/BSTwitterFramework.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BSTwitterFramework/BSTwitterFramework-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		C0C3594914920F6500FF7AF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -227,6 +519,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$SRCROOT/External/ASIHTTPRequest/pokeb-asi-http-request/Classes",
+					"$SRCROOT/External/OAuthCore/atebits-OAuthCore/",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
@@ -235,7 +531,6 @@
 		C0C3594A14920F6500FF7AF5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -245,6 +540,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$SRCROOT/External/ASIHTTPRequest/pokeb-asi-http-request/Classes",
+					"$SRCROOT/External/OAuthCore/atebits-OAuthCore/",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -256,9 +555,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BSTwitterFramework/BSTwitterFramework-Prefix.pch";
-				INFOPLIST_FILE = "BSTwitterFramework/BSTwitterFramework-Info.plist";
+				GCC_PREFIX_HEADER = "BSTwitterFrameworkTest/BSTwitterFrameworkTest-Prefix.pch";
+				INFOPLIST_FILE = "BSTwitterFrameworkTest/BSTwitterFrameworkTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -267,9 +569,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BSTwitterFramework/BSTwitterFramework-Prefix.pch";
-				INFOPLIST_FILE = "BSTwitterFramework/BSTwitterFramework-Info.plist";
+				GCC_PREFIX_HEADER = "BSTwitterFrameworkTest/BSTwitterFrameworkTest-Prefix.pch";
+				INFOPLIST_FILE = "BSTwitterFrameworkTest/BSTwitterFrameworkTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -277,6 +582,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C07C8686149314ED00F01991 /* Build configuration list for PBXNativeTarget "BSTwitterFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C07C8687149314ED00F01991 /* Debug */,
+				C07C8688149314ED00F01991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C0C3592114920F6500FF7AF5 /* Build configuration list for PBXProject "BSTwitterFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -286,13 +600,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C0C3594B14920F6500FF7AF5 /* Build configuration list for PBXNativeTarget "BSTwitterFramework" */ = {
+		C0C3594B14920F6500FF7AF5 /* Build configuration list for PBXNativeTarget "BSTwitterFrameworkTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C0C3594C14920F6500FF7AF5 /* Debug */,
 				C0C3594D14920F6500FF7AF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

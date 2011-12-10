@@ -1,0 +1,244 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C07C86B814932ED900F01991 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C86B714932ED900F01991 /* Foundation.framework */; };
+		C07C86CF1493738E00F01991 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = C07C86C91493738E00F01991 /* NSData+Base64.h */; };
+		C07C86D01493738E00F01991 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C86CA1493738E00F01991 /* NSData+Base64.m */; };
+		C07C86D11493738E00F01991 /* OAuth+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C07C86CB1493738E00F01991 /* OAuth+Additions.h */; };
+		C07C86D21493738E00F01991 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C86CC1493738E00F01991 /* OAuth+Additions.m */; };
+		C07C86D31493738E00F01991 /* OAuthCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C07C86CD1493738E00F01991 /* OAuthCore.h */; };
+		C07C86D41493738E00F01991 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C86CE1493738E00F01991 /* OAuthCore.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C07C86B414932ED900F01991 /* libOAuthCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOAuthCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C07C86B714932ED900F01991 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C07C86BB14932ED900F01991 /* OAuthCore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OAuthCore-Prefix.pch"; sourceTree = "<group>"; };
+		C07C86C91493738E00F01991 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		C07C86CA1493738E00F01991 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		C07C86CB1493738E00F01991 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		C07C86CC1493738E00F01991 /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		C07C86CD1493738E00F01991 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		C07C86CE1493738E00F01991 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C07C86B114932ED900F01991 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C07C86B814932ED900F01991 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C07C86A914932ED900F01991 = {
+			isa = PBXGroup;
+			children = (
+				C07C86BB14932ED900F01991 /* OAuthCore-Prefix.pch */,
+				C07C86C81493737800F01991 /* OAuthCore */,
+				C07C86B614932ED900F01991 /* Frameworks */,
+				C07C86B514932ED900F01991 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C07C86B514932ED900F01991 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C07C86B414932ED900F01991 /* libOAuthCore.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C07C86B614932ED900F01991 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C07C86B714932ED900F01991 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C07C86C81493737800F01991 /* OAuthCore */ = {
+			isa = PBXGroup;
+			children = (
+				C07C86C91493738E00F01991 /* NSData+Base64.h */,
+				C07C86CA1493738E00F01991 /* NSData+Base64.m */,
+				C07C86CB1493738E00F01991 /* OAuth+Additions.h */,
+				C07C86CC1493738E00F01991 /* OAuth+Additions.m */,
+				C07C86CD1493738E00F01991 /* OAuthCore.h */,
+				C07C86CE1493738E00F01991 /* OAuthCore.m */,
+			);
+			name = OAuthCore;
+			path = "atebits-OAuthCore";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C07C86B214932ED900F01991 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C07C86CF1493738E00F01991 /* NSData+Base64.h in Headers */,
+				C07C86D11493738E00F01991 /* OAuth+Additions.h in Headers */,
+				C07C86D31493738E00F01991 /* OAuthCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C07C86B314932ED900F01991 /* OAuthCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C07C86C114932ED900F01991 /* Build configuration list for PBXNativeTarget "OAuthCore" */;
+			buildPhases = (
+				C07C86B014932ED900F01991 /* Sources */,
+				C07C86B114932ED900F01991 /* Frameworks */,
+				C07C86B214932ED900F01991 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OAuthCore;
+			productName = OAuthCore;
+			productReference = C07C86B414932ED900F01991 /* libOAuthCore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C07C86AB14932ED900F01991 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Basil Salad Software";
+			};
+			buildConfigurationList = C07C86AE14932ED900F01991 /* Build configuration list for PBXProject "OAuthCore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C07C86A914932ED900F01991;
+			productRefGroup = C07C86B514932ED900F01991 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C07C86B314932ED900F01991 /* OAuthCore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C07C86B014932ED900F01991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C07C86D01493738E00F01991 /* NSData+Base64.m in Sources */,
+				C07C86D21493738E00F01991 /* OAuth+Additions.m in Sources */,
+				C07C86D41493738E00F01991 /* OAuthCore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C07C86BF14932ED900F01991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C07C86C014932ED900F01991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C07C86C214932ED900F01991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/OAuthCore.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OAuthCore-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C07C86C314932ED900F01991 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/OAuthCore.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OAuthCore-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C07C86AE14932ED900F01991 /* Build configuration list for PBXProject "OAuthCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C07C86BF14932ED900F01991 /* Debug */,
+				C07C86C014932ED900F01991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C07C86C114932ED900F01991 /* Build configuration list for PBXNativeTarget "OAuthCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C07C86C214932ED900F01991 /* Debug */,
+				C07C86C314932ED900F01991 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C07C86AB14932ED900F01991 /* Project object */;
+}
