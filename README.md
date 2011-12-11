@@ -16,5 +16,5 @@ This library uses ARC and targeted for iOS 5.x.
 ## Dependencies
 
 - ASIHTTPRequest - https://github.com/pokeb/asi-http-request.git
-- OAUTHConsumer - https://github.com/jdg/oauthconsumer.git
+- OAuthCore - https://github.com/atebits/OAuthCore
 
