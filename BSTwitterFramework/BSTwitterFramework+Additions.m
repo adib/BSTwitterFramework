@@ -3,14 +3,24 @@
 //  BSTwitterFramework
 //
 //  Created by Sasmito Adibowo on 11-12-11.
-//  Copyright (c) 2011 Basil Salad Software. All rights reserved.
+//  Copyright (c) 2011 Basil Salad Software. Some rights reserved – refer to the included LICENSE file.
+//  http://basil-salad.com
 //
 
 #import "BSTwitterFramework+Additions.h"
 
+// this is ARC code.
+#if !__has_feature(objc_arc)
+#error Need automatic reference counting to compile this.
+#endif
+
+// ---
+
 NSString* const BSTwitterErrorDomain = @"com.basilsalad.BSTwitterErrorDomain";
 
 const int NSTwitterErrorCodeDirectMessagesNotAllowed = 93;
+
+// ---
 
 @implementation NSError (BSTwitterFramework)
 

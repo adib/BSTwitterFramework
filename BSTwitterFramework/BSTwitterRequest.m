@@ -3,7 +3,8 @@
 //  BSTwitterFramework
 //
 //  Created by Sasmito Adibowo on 11-12-11.
-//  Copyright (c) 2011 Basil Salad Software. All rights reserved.
+//  Copyright (c) 2011 Basil Salad Software. Some rights reserved – refer to the included LICENSE file.
+//  http://basil-salad.com
 //
 
 #import "BSTwitterRequest.h"
@@ -18,7 +19,6 @@
 #endif
 
 
-// implementation is located in OAuthCore
 static NSInteger BSTwitterRequestSortParameter(NSString *key1, NSString *key2, void *context) {
 	NSComparisonResult r = [key1 compare:key2];
 	if(r == NSOrderedSame) { // compare by value in this case
