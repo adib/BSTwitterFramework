@@ -1,13 +1,6 @@
 [submodule "External/ASIHTTPRequest/pokeb-asi-http-request"]
 	path = External/ASIHTTPRequest/pokeb-asi-http-request
 	url = https://github.com/pokeb/asi-http-request.git
-[submodule "External/OAUTHConsumer/jdg-oauthconsumer"]
-	path = External/OAUTHConsumer/jdg-oauthconsumer
-	url = https://github.com/jdg/oauthconsumer.git
-
-[submodule "External/OAUTHConsumer/adib-oauthconsumer"]
-	path = External/OAUTHConsumer/adib-oauthconsumer
-	url = https://adib@github.com/adib/oauthconsumer.git
 [submodule "External/OAuthCore/atebits-OAuthCore"]
 	path = External/OAuthCore/atebits-OAuthCore
 	url = https://github.com/atebits/OAuthCore.git

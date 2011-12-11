@@ -3,7 +3,8 @@
 //  BSTwitterFramework
 //
 //  Created by Sasmito Adibowo on 10-12-11.
-//  Copyright (c) 2011 Basil Salad Software. All rights reserved.
+//  Copyright (c) 2011 Basil Salad Software. Some rights reserved – refer to the included LICENSE file.
+//  http://basil-salad.com
 //
 
 #import "BSWebAuthViewController.h"
@@ -11,6 +12,7 @@
 #import "ASIFormDataRequest.h"
 #import "OAuthCore.h"
 #import "OAuth+Additions.h"
+
 // this is ARC code.
 #if !__has_feature(objc_arc)
 #error Need automatic reference counting to compile this.
@@ -35,7 +37,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 
 @synthesize mainWebView;
 @synthesize delegate;
-@synthesize rightBarButton;
+@synthesize cancelBarButton;
 @synthesize requestTokenURL;
 @synthesize authorizeURL;
 @synthesize accessTokenURL;
@@ -115,6 +117,9 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 {
     requestToken = nil;
     requestTokenSecret = nil;
+    
+    accessToken = nil;
+    accessTokenSecret = nil;
     
     NSOperationQueue* mainQueue = [NSOperationQueue mainQueue];
     NSString* authorizeURLString = [self.authorizeURL absoluteString];
@@ -215,7 +220,6 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 
 
 
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
@@ -236,7 +240,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.mainWebView = nil;
-    self.rightBarButton = nil;
+    self.cancelBarButton = nil;
     
     [shadeActivityIndicatorView removeFromSuperview];
     shadeActivityIndicatorView = nil;
@@ -253,7 +257,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 
 #pragma mark Command Handlers
 
--(IBAction) onRightButton:(id)sender 
+-(IBAction) onCancelButton:(id)sender 
 {
     [self.delegate webAuthViewControllerDidCancel:self];
 }
