@@ -12,8 +12,17 @@
 
 @interface BSMainViewController : UIViewController <BSFlipsideViewControllerDelegate,BSWebAuthViewControllerDelegate>
 
-- (IBAction)showInfo:(id)sender;
+-(IBAction)showInfo:(id)sender;
 
 -(IBAction) onAuthenticate:(id) sender;
+
+-(IBAction) onVerifyCredentials:(id)sender;
+
+-(IBAction) onShowDirectMessage:(id)sender;
+
+-(IBAction) onTweet:(id)sender;
+
+@property (nonatomic,strong) NSString* accessToken;
+@property (nonatomic,strong) NSString* accessTokenSecret;
 
 @end
