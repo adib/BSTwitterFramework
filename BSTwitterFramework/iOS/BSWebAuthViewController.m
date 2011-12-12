@@ -126,6 +126,9 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     
     ASIFormDataRequest*  request_ = [ASIFormDataRequest requestWithURL:self.requestTokenURL];
     ASIFormDataRequest __weak* request = request_;
+    request.useSessionPersistence = NO;
+    request.useKeychainPersistence = NO;
+    request.useCookiePersistence = NO;
     [request buildPostBody];
     NSString* header = OAuthorizationHeader([request url], [request requestMethod], [request postBody], self.consumerKey, self.consumerSecret, @"", @"");
     [request addRequestHeader:@"Authorization" value:header];
@@ -187,6 +190,9 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     NSURL* requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?oauth_verifier=%@",accessTokenURLString,verifier]];
     ASIFormDataRequest*  request_ = [ASIFormDataRequest requestWithURL:requestURL];
     ASIFormDataRequest __weak* request = request_;
+    request.useSessionPersistence = NO;
+    request.useKeychainPersistence = NO;
+    request.useCookiePersistence = NO;
     [request buildPostBody];
     NSString* header = OAuthorizationHeader([request url], [request requestMethod], [request postBody], self.consumerKey, self.consumerSecret, requestToken, requestTokenSecret);
     [request addRequestHeader:@"Authorization" value:header];

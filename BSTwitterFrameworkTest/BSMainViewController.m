@@ -10,11 +10,11 @@
 #import "BSMainViewController.h"
 #import "Secrets.h"
 #import "BSTwitterRequest.h"
+#import "BSTwitterAccessKey.h"
 
 @implementation BSMainViewController
 
-@synthesize accessToken;
-@synthesize accessTokenSecret;
+@synthesize twitterAccessKey;
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,8 +31,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    self.accessToken = [defaults stringForKey:@"accessToken"];
-    self.accessTokenSecret = [defaults stringForKey:@"accessTokenSecret"];
+    BSTwitterAccessKey* token = [BSTwitterAccessKey new];
+    token.accessToken = [defaults stringForKey:@"accessToken"];
+    token.accessTokenSecret = [defaults stringForKey:@"accessTokenSecret"];
+    token.consumerKey = BSSampleConsumerKey;
+    token.consumerSecret = BSSampleConsumerSecret;
+    self.twitterAccessKey = token;
+
 }
 
 - (void)viewDidUnload
@@ -91,8 +96,8 @@
     NSString* splashPath = [mainBundle pathForResource:@"sample_splash" ofType:@"html"];
     BSWebAuthViewController* ctrl = [BSWebAuthViewController instantiate];
     ctrl.delegate = self;
-    ctrl.consumerKey = BSSampleConsumerKey;
-    ctrl.consumerSecret = BSSampleConsumerSecret;
+    ctrl.consumerKey = self.twitterAccessKey.consumerKey;
+    ctrl.consumerSecret = self.twitterAccessKey.consumerSecret;
     ctrl.callbackURL = [NSURL URLWithString:BSSampleCallbackURL];
     ctrl.splashURL = [NSURL fileURLWithPath:splashPath];    
     [self presentModalViewController:ctrl animated:YES];
@@ -107,10 +112,8 @@
                                 @"false",@"include_entities", nil];
 
     BSTwitterRequest* request = [[BSTwitterRequest alloc] initWithURL:requestURL parameters:parameters requestMethod:BSTwitterRequestMethodGET];
-    request.accessToken = self.accessToken;
-    request.accessTokenSecret = self.accessTokenSecret;
-    request.consumerKey = BSSampleConsumerKey;
-    request.consumerSecret = BSSampleConsumerSecret;
+    request.twitterAccessKey = self.twitterAccessKey;
+    
     
     [request performRequestWithJSONHandler:^(id jsonResult, NSError *error) {
         NSLog(@"Error: %@ Result: %@",error,jsonResult); 
@@ -138,10 +141,8 @@
                                 @"false",@"include_entities", nil];
     
     BSTwitterRequest* request = [[BSTwitterRequest alloc] initWithURL:requestURL parameters:parameters requestMethod:BSTwitterRequestMethodGET];
-    request.accessToken = self.accessToken;
-    request.accessTokenSecret = self.accessTokenSecret;
-    request.consumerKey = BSSampleConsumerKey;
-    request.consumerSecret = BSSampleConsumerSecret;
+    request.twitterAccessKey = self.twitterAccessKey;
+
     
     [request performRequestWithJSONHandler:^(id jsonResult, NSError *error) {
         NSLog(@"Error: %@ Result: %@",error,jsonResult); 
@@ -173,10 +174,7 @@
                                 text,@"status", nil];
     
     BSTwitterRequest* request = [[BSTwitterRequest alloc] initWithURL:requestURL parameters:parameters requestMethod:BSTwitterRequestMethodPOST];
-    request.accessToken = self.accessToken;
-    request.accessTokenSecret = self.accessTokenSecret;
-    request.consumerKey = BSSampleConsumerKey;
-    request.consumerSecret = BSSampleConsumerSecret;
+    request.twitterAccessKey = self.twitterAccessKey;
     
     [request performRequestWithJSONHandler:^(id jsonResult, NSError *error) {
         NSLog(@"Error: %@ Result: %@",error,jsonResult); 
@@ -211,12 +209,12 @@
     NSLog(@"Access Token:\t%@",ctrl.accessToken);
     NSLog(@"Access Token secret:\t%@",ctrl.accessTokenSecret);
 
-    self.accessToken = ctrl.accessToken;
-    self.accessTokenSecret = ctrl.accessTokenSecret;
+    self.twitterAccessKey.accessToken = ctrl.accessToken;
+    self.twitterAccessKey.accessTokenSecret = ctrl.accessTokenSecret;
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.accessToken forKey:@"accessToken"];
-    [defaults setObject:self.accessTokenSecret forKey:@"accessTokenSecret"];
+    [defaults setObject:self.twitterAccessKey.accessToken forKey:@"accessToken"];
+    [defaults setObject:self.twitterAccessKey.accessTokenSecret forKey:@"accessTokenSecret"];
     [defaults synchronize];
 
     [ctrl dismissModalViewControllerAnimated:YES];

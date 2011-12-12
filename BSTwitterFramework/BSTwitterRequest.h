@@ -9,6 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BSTwitterAccessKey;
+
 /**
  HTTP Request Method for a Twitter request.
  */
@@ -64,26 +66,9 @@ typedef void(^BSTwitterJSONRequestHandler)(id jsonResult, NSError *error);
 @property (nonatomic,readonly) BSTwitterRequestMethod requestMethod;
 
 /**
- The Twitter application's Consumer Key string. Initialize this before performing the request.
+ OAuth keys and tokens
  */
-@property (nonatomic,strong) NSString* consumerKey;
-
-/**
- The Twitter application's Consumer Secret string. Initialize this before performing the request.
- */
-@property (nonatomic,strong) NSString* consumerSecret;
-
-/**
- The Twitter application's Access Token string. Initialize this before performing the request.
- @see BSWebAuthViewController
- */
-@property (nonatomic,strong) NSString* accessToken;
-
-/**
- The Twitter application's Access Token Secret string. Initialize this before performing the request.
- @see BSWebAuthViewController
- */
-@property (nonatomic,strong) NSString* accessTokenSecret;
+@property (nonatomic,strong) BSTwitterAccessKey* twitterAccessKey;
 
 
 /**

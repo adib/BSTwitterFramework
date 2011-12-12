@@ -10,6 +10,8 @@
 #import "BSFlipsideViewController.h"
 #import "BSWebAuthViewController.h"
 
+@class BSTwitterAccessKey;
+
 @interface BSMainViewController : UIViewController <BSFlipsideViewControllerDelegate,BSWebAuthViewControllerDelegate>
 
 -(IBAction)showInfo:(id)sender;
@@ -22,7 +24,6 @@
 
 -(IBAction) onTweet:(id)sender;
 
-@property (nonatomic,strong) NSString* accessToken;
-@property (nonatomic,strong) NSString* accessTokenSecret;
+@property (nonatomic,strong) BSTwitterAccessKey* twitterAccessKey;
 
 @end

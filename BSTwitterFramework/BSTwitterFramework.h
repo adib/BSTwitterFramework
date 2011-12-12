@@ -9,3 +9,5 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BSTwitterRequest.h"
+#import "BSTwitterAccessKey.h"

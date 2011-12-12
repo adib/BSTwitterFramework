@@ -12,6 +12,7 @@
 #import "OAuthCore.h"
 #import "OAuth+Additions.h"
 #import "BSTwitterFramework+Additions.h"
+#import "BSTwitterAccessKey.h"
 
 // this is ARC code.
 #if !__has_feature(objc_arc)
@@ -35,10 +36,7 @@ static NSInteger BSTwitterRequestSortParameter(NSString *key1, NSString *key2, v
 @synthesize URL = _URL;
 @synthesize parameters = _parameters;
 @synthesize requestMethod = _requestMethod;
-@synthesize consumerKey = _consumerKey;
-@synthesize consumerSecret = _consumerSecret;
-@synthesize accessToken = _accessToken;
-@synthesize accessTokenSecret = _accessTokenSecret;
+@synthesize twitterAccessKey = _twitterAccessToken;
 
 - (id)initWithURL:(NSURL *)url parameters:(NSDictionary *)parameters requestMethod:(BSTwitterRequestMethod)requestMethod
 {
@@ -98,9 +96,14 @@ static NSInteger BSTwitterRequestSortParameter(NSString *key1, NSString *key2, v
         request_ = formRequest;
     }
     ASIHTTPRequest __weak* request = request_;
+    request.useSessionPersistence = NO;
+    request.useKeychainPersistence = NO;
+    request.useCookiePersistence = NO;
     [request buildPostBody];
     
-    NSString* header = OAuthorizationHeader([request url], [request requestMethod], [request postBody], self.consumerKey, self.consumerSecret, self.accessToken, self.accessTokenSecret);
+    BSTwitterAccessKey* accessToken = self.twitterAccessKey;
+    
+    NSString* header = OAuthorizationHeader([request url], [request requestMethod], [request postBody], accessToken.consumerKey, accessToken.consumerSecret, accessToken.accessToken, accessToken.accessTokenSecret);
     [request addRequestHeader:@"Authorization" value:header];
     
     [request setCompletionBlock:^{
