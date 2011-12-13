@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C060B0EE149490EB00D65D36 /* BSTwitterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C060B0ED149490EB00D65D36 /* BSTwitterRequest.m */; };
-		C060B10714949E6800D65D36 /* BSTwitterFramework+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C060B10614949E6800D65D36 /* BSTwitterFramework+Additions.m */; };
-		C065EB011496B36A001B180A /* BSTwitterAccessKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C065EB001496B36A001B180A /* BSTwitterAccessKey.m */; };
+		C057799E149749A500AE9DB9 /* BSTwitterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C060B0ED149490EB00D65D36 /* BSTwitterRequest.m */; };
+		C057799F149749A900AE9DB9 /* BSTwitterFramework+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C060B10614949E6800D65D36 /* BSTwitterFramework+Additions.m */; };
+		C05779A0149749AD00AE9DB9 /* BSTwitterAccessKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C065EB001496B36A001B180A /* BSTwitterAccessKey.m */; };
+		C05779A1149749B800AE9DB9 /* BSWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C868D1493155800F01991 /* BSWebAuthViewController.m */; };
 		C07C865614930F9F00F01991 /* BSTwitterFrameworkTest-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07C865514930F9F00F01991 /* BSTwitterFrameworkTest-Info.plist */; };
 		C07C86631493111300F01991 /* libASIHTTPRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C8662149310FD00F01991 /* libASIHTTPRequest.a */; };
 		C07C86741493117F00F01991 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C86731493117F00F01991 /* libz.dylib */; };
@@ -18,7 +19,6 @@
 		C07C867F149314ED00F01991 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C3592D14920F6500FF7AF5 /* Foundation.framework */; };
 		C07C8685149314ED00F01991 /* BSTwitterFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C8684149314ED00F01991 /* BSTwitterFramework.m */; };
 		C07C86891493153700F01991 /* libBSTwitterFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C867E149314ED00F01991 /* libBSTwitterFramework.a */; };
-		C07C868E1493155800F01991 /* BSWebAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C868D1493155800F01991 /* BSWebAuthViewController.m */; };
 		C07C86A714931B6D00F01991 /* BSWebAuthViewController_Phone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07C86A614931B6D00F01991 /* BSWebAuthViewController_Phone.xib */; };
 		C07C86E1149377AF00F01991 /* libOAuthCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07C86DE1493779C00F01991 /* libOAuthCore.a */; };
 		C07C86E41493789900F01991 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = C07C86E31493789900F01991 /* Secrets.m */; };
@@ -427,6 +427,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07C8685149314ED00F01991 /* BSTwitterFramework.m in Sources */,
+				C057799E149749A500AE9DB9 /* BSTwitterRequest.m in Sources */,
+				C057799F149749A900AE9DB9 /* BSTwitterFramework+Additions.m in Sources */,
+				C05779A0149749AD00AE9DB9 /* BSTwitterAccessKey.m in Sources */,
+				C05779A1149749B800AE9DB9 /* BSWebAuthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,11 +442,7 @@
 				C0C3593C14920F6500FF7AF5 /* BSAppDelegate.m in Sources */,
 				C0C3593F14920F6500FF7AF5 /* BSMainViewController.m in Sources */,
 				C0C3594214920F6500FF7AF5 /* BSFlipsideViewController.m in Sources */,
-				C07C868E1493155800F01991 /* BSWebAuthViewController.m in Sources */,
 				C07C86E41493789900F01991 /* Secrets.m in Sources */,
-				C060B0EE149490EB00D65D36 /* BSTwitterRequest.m in Sources */,
-				C060B10714949E6800D65D36 /* BSTwitterFramework+Additions.m in Sources */,
-				C065EB011496B36A001B180A /* BSTwitterAccessKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
