@@ -19,23 +19,23 @@
 /**
  The Twitter application's Consumer Key string. Initialize this before performing the request.
  */
-@property (nonatomic,strong) NSString* consumerKey;
+@property (strong) NSString* consumerKey;
 
 /**
  The Twitter application's Consumer Secret string. Initialize this before performing the request.
  */
-@property (nonatomic,strong) NSString* consumerSecret;
+@property (strong) NSString* consumerSecret;
 
 /**
  The Twitter application's Access Token string. Initialize this before performing the request.
  @see BSWebAuthViewController
  */
-@property (nonatomic,strong) NSString* accessToken;
+@property (strong) NSString* accessToken;
 
 /**
  The Twitter application's Access Token Secret string. Initialize this before performing the request.
  @see BSWebAuthViewController
  */
-@property (nonatomic,strong) NSString* accessTokenSecret;
+@property (strong) NSString* accessTokenSecret;
 
 @end
