@@ -53,7 +53,17 @@ static NSInteger BSTwitterRequestSortParameter(NSString *key1, NSString *key2, v
 -(void) performRequestWithJSONHandler:(BSTwitterJSONRequestHandler) handler
 {        
     ASIHTTPRequest*  request_ = nil;
-    if (_requestMethod == BSTwitterRequestMethodGET) {
+    if (_requestMethod == BSTwitterRequestMethodPOST) {
+        ASIFormDataRequest* formRequest = [ASIFormDataRequest requestWithURL:_URL];
+        for (NSString* key in _parameters) {
+            id value = [_parameters objectForKey:key];
+            [formRequest setPostValue:value forKey:key];
+        }
+        
+        [formRequest setRequestMethod:@"POST"];
+        request_ = formRequest;
+
+    } else {
         NSURL* url = _URL;
         
         NSMutableDictionary* submitParams = [NSMutableDictionary dictionaryWithDictionary:_parameters];
@@ -70,30 +80,24 @@ static NSInteger BSTwitterRequestSortParameter(NSString *key1, NSString *key2, v
         }
         
         NSArray *sortedKeys = [[encodedParameters allKeys] sortedArrayUsingFunction:BSTwitterRequestSortParameter context:(__bridge void*) encodedParameters];
-
+        
         NSMutableArray *parameterArray = [NSMutableArray array];
         for(NSString *key in sortedKeys) {
             [parameterArray addObject:[NSString stringWithFormat:@"%@=%@", key, [encodedParameters objectForKey:key]]];
         }
         NSString *normalizedParameterString = [parameterArray componentsJoinedByString:@"&"];
-
+        
         NSString *normalizedURLString = [NSString stringWithFormat:@"%@://%@%@?%@", [url scheme], [url host], [url path],normalizedParameterString];
-
+        
         request_ = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:normalizedURLString]];
-        [request_ setRequestMethod:@"GET"];
-    } else {
-        ASIFormDataRequest* formRequest = [ASIFormDataRequest requestWithURL:_URL];
-        for (NSString* key in _parameters) {
-            id value = [_parameters objectForKey:key];
-            [formRequest setPostValue:value forKey:key];
-        }
+        
+        /// ----
         if (_requestMethod == BSTwitterRequestMethodDELETE) {
-            [formRequest setRequestMethod:@"DELETE"];
+            [request_ setRequestMethod:@"DELETE"];
         } else {
-            [formRequest setRequestMethod:@"POST"];
+            [request_ setRequestMethod:@"GET"];
         }
         
-        request_ = formRequest;
     }
     ASIHTTPRequest __weak* request = request_;
     request.useSessionPersistence = NO;
