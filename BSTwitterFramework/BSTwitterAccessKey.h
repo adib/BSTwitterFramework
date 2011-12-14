@@ -38,4 +38,17 @@
  */
 @property (strong) NSString* accessTokenSecret;
 
+/**
+ Designated initializer.
+ @param key The Twitter application's Consumer Key string.
+ @param secret The Twitter application's Consumer Secret string.
+ */
+-(id) initWithConsumerKey:(NSString*) key consumerSecret:(NSString*) secret;
+
+/**
+ Convenience initializer. Sets the consumer key and consumer secret to blank strings (instead of nil to prevent crashing).
+ */
+-(id) init;
+
+
 @end

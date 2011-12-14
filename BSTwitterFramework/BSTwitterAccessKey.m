@@ -17,6 +17,22 @@
 @synthesize accessTokenSecret;
 
 
+-(id)initWithConsumerKey:(NSString *)key consumerSecret:(NSString *)secret
+{
+    if (!(self = [super init])) {
+        return nil;
+    }
+    
+    consumerKey = key;
+    consumerSecret = secret;
+    return self;
+}
+
+-(id)init
+{
+    return [self initWithConsumerKey:@"" consumerSecret:@""];
+}
+
 -(id)copyWithZone:(NSZone *)zone {
     return [self copy];
 }
