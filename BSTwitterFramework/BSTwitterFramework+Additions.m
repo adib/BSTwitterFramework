@@ -16,9 +16,8 @@
 
 // ---
 
-NSString* const BSTwitterErrorDomain = @"com.basilsalad.BSTwitterErrorDomain";
+NSString* const BSTwitterErrorDomain = @"com.basilsalad.BSTwitterFramework.BSTwitterErrorDomain";
 
-const int NSTwitterErrorCodeDirectMessagesNotAllowed = 93;
 
 // ---
 

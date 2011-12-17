@@ -31,6 +31,12 @@ static NSInteger BSTwitterRequestSortParameter(NSString *key1, NSString *key2, v
 	return r;
 }
 
+
+NSString* const BSTwitterRequestErrorDomain = @"com.basilsalad.BSTwitterFramework.BSTwitterRequestErrorDomain";
+
+
+NSString* const BSTwitterRequestErrorHTTPCodeKey = @"com.basilsalad.BSTwitterFramework.BSTwitterRequestErrorDomain.BSTwitterRequestErrorHTTPCodeKey";
+
 @implementation BSTwitterRequest
 
 @synthesize URL = _URL;
@@ -115,7 +121,49 @@ static NSInteger BSTwitterRequestSortParameter(NSString *key1, NSString *key2, v
         NSData* jsonData = request.responseData;
         id jsonResult = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonError];
         if (jsonError) {
-            handler(nil,jsonError);
+            // Twitter responds with an HTML page when the service is down.
+            // in those cases, detect the response code
+            // http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+            int httpStatus = request.responseStatusCode;
+            if (httpStatus == 200) {
+                // HTTP/200 -- OK
+                // just return the JSON error
+                handler(nil,jsonError);
+                return;
+            }
+            
+            NSMutableDictionary* userInfo = [NSMutableDictionary dictionaryWithCapacity:4];
+            NSInteger errorCode = BSTwitterRequestErrorUnknown;
+            NSString* errorMessage = nil;
+            switch (httpStatus) {
+                case 502: // HTTP 502 "Bad Gateway"
+                {
+                    // looks like Twitter uses 502 for "Over Capacity" errors
+                    errorCode = BSTwitterRequestErrorOverCapacity;
+                    errorMessage = NSLocalizedString(@"Twitter is currently over capacity - please try again later", @"Twitter HTTP Error");
+                }
+                    break;
+                case 503: // HTTP 503 "Service Unavailable"
+                {
+                    errorCode = BSTwitterRequestErrorServiceUnavailable;
+                    errorMessage = NSLocalizedString(@"Twitter is currently unavailable - please try again later", @"Twitter HTTP Error");
+                }
+                    break;
+            }
+            
+            [userInfo setObject:[NSNumber numberWithInt:httpStatus] forKey:BSTwitterRequestErrorHTTPCodeKey];            
+            NSURL* url = [request url];
+            if (url) {
+                [userInfo setObject:url forKey:NSURLErrorKey];
+            }
+            
+            if (errorMessage) {
+                [userInfo setObject:errorMessage forKey:NSLocalizedDescriptionKey];
+            }            
+            [userInfo setObject:jsonError forKey:NSUnderlyingErrorKey];
+            
+            NSError* returnError =[NSError errorWithDomain:BSTwitterRequestErrorDomain code:errorCode userInfo:userInfo];
+            handler(nil,returnError);            
             return;
         } else if ([jsonResult isKindOfClass:[NSDictionary class]]) {
             id twitterErrors = [jsonResult objectForKey:@"errors"];

@@ -41,4 +41,7 @@ extern NSString* const BSTwitterErrorDomain;
 /**
  The Twitter error
  */
-extern const int NSTwitterErrorCodeDirectMessagesNotAllowed;
+enum BSTwitterErrorCode {
+    BSTwitterErrorCodeNone = 0,
+    BSTwitterErrorCodeDirectMessagesNotAllowed = 93
+};
