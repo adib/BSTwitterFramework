@@ -34,13 +34,9 @@
 }
 
 -(id)copyWithZone:(NSZone *)zone {
-    return [self copy];
-}
-
--(id) copy {
-    BSTwitterAccessKey* other = (BSTwitterAccessKey* )[super copy];
-    other.consumerKey = consumerKey;
-    other.consumerSecret = consumerSecret;
+    BSTwitterAccessKey* other = [[[self class] allocWithZone:zone] initWithConsumerKey:consumerKey consumerSecret:consumerSecret];
+    //other.consumerKey = consumerKey;
+    //other.consumerSecret = consumerSecret;
     other.accessToken = accessToken;
     other.accessTokenSecret = accessTokenSecret;
     return other;
