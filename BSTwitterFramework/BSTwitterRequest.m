@@ -168,7 +168,28 @@ NSString* const BSTwitterRequestErrorHTTPCodeKey = @"com.basilsalad.BSTwitterFra
                 handler(jsonResult,error);
                 return;
             }
+            // singular error for saved search
+            // example:
+            // https://dev.twitter.com/docs/using-search
+            
+            NSString* errorMessage = [jsonResult objectForKey:@"error"];
+            if (errorMessage) {
+                NSMutableDictionary* userInfo = [NSMutableDictionary dictionaryWithCapacity:3];
+                int httpStatus = request.responseStatusCode;
+
+                [userInfo setObject:[NSNumber numberWithInt:httpStatus] forKey:BSTwitterRequestErrorHTTPCodeKey];            
+                NSURL* url = [request url];
+                if (url) {
+                    [userInfo setObject:url forKey:NSURLErrorKey];
+                }
+                [userInfo setObject:errorMessage forKey:NSLocalizedDescriptionKey];
+
+                NSError* error = [NSError errorWithDomain:BSTwitterRequestErrorDomain code:BSTwitterRequestErrorUnknown userInfo:userInfo];
+                handler(jsonResult,error);
+                return;
+            }
         }
+        
         handler(jsonResult,nil);
     }];
     
