@@ -154,9 +154,10 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
         NSString* tokenSecret = [resultDict objectForKey:@"oauth_token_secret"];
 
         if (callbackConfirmed) {
-            NSString* requestString = [NSString stringWithFormat:@"%@?oauth_token=%@",authorizeURLString,token];
+            NSString* requestString = [NSString stringWithFormat:@"%@?force_login=true&oauth_token=%@",authorizeURLString,token];
             NSURL* requestURL = [NSURL URLWithString:requestString];
             [mainQueue addOperationWithBlock:^{
+                
                 requestToken = token;
                 requestTokenSecret = tokenSecret;
 
