@@ -118,7 +118,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 }
 
 
--(void) startHandshake 
+-(void) beginAuthProcess 
 {
     requestToken = nil;
     requestTokenSecret = nil;
