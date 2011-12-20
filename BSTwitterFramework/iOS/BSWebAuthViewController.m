@@ -72,7 +72,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void) showShadeView:(BOOL) show  
+-(void) showBlockingProgressView:(BOOL) show  
 {
     if (showingShade == show) {
         return; // already in the correct state
@@ -95,7 +95,12 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
         [UIView setAnimationDuration:animationDuration];
         shade.alpha = 0;
         [UIView commitAnimations];
-        [shade performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:animationDuration];        
+        void (^removeShade)() = ^() {
+            if (!showingShade) {
+                [shade removeFromSuperview];
+            }
+        };
+        [[NSOperationQueue mainQueue] performSelector:@selector(addOperationWithBlock:) withObject:removeShade afterDelay:animationDuration];
     }
     
     showingShade = show;
@@ -177,7 +182,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
         }];
     }];
     
-    [self showShadeView:YES];    
+    [self showBlockingProgressView:YES];    
     [request startAsynchronous];
 }
 
@@ -207,18 +212,18 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
             accessToken = token;
             accessTokenSecret = tokenSecret;
             [self.delegate webAuthViewController:self didCompleteWithResponseDictionary:parameterDict];
-            [self showShadeView:NO];
+            //[self showBlockingProgressView:NO];
         }];
     }];
     [request setFailedBlock:^{
         NSError* error = request.error;
         [mainQueue addOperationWithBlock:^{
-            [self showShadeView:NO];
+            [self showBlockingProgressView:NO];
             [self.delegate webAuthViewController:self didFailWithError:error];
         }];
     }];
     
-    [self showShadeView:YES];
+    [self showBlockingProgressView:YES];
     [request startAsynchronous];
 }
 
@@ -230,12 +235,13 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.cancelBarButton.enabled = YES;
     if (splashURL) {
         kickstart = YES;
         NSURLRequest* request = [NSURLRequest requestWithURL:splashURL];
         [self.mainWebView loadRequest:request];
     }  else {
-        [self performSelectorOnMainThread:@selector(startHandshake) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(beginAuthProcess) withObject:nil waitUntilDone:NO];
     }
 }
 
@@ -329,7 +335,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 {
     if (webView == self.mainWebView) {
         if (!kickstart) {
-            [self showShadeView:YES];
+            [self showBlockingProgressView:YES];
         }
     }
 }
@@ -338,11 +344,11 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 {
     if (webView == self.mainWebView) {
         if (!kickstart) {
-            [self showShadeView:NO];
+            [self showBlockingProgressView:NO];
         } else {
             // starting handshake here.
             kickstart = NO;
-            [self performSelectorOnMainThread:@selector(startHandshake) withObject:nil waitUntilDone:NO];
+            [self performSelectorOnMainThread:@selector(beginAuthProcess) withObject:nil waitUntilDone:NO];
         }
     }
 }
@@ -351,7 +357,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
 {
     if (webView == self.mainWebView) {
         if (!kickstart) {
-            [self showShadeView:NO];
+            [self showBlockingProgressView:NO];
         }
         [self.delegate webAuthViewController:self didFailWithError:error];
     }    

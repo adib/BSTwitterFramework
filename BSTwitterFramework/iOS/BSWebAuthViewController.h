@@ -127,6 +127,20 @@
  */
 -(IBAction) onCancelButton:(id)sender;
 
+/**
+ Shows/hides a black veil on top of the web view indicating that
+ a network I/O is in progress.
+ @param show when YES, shows the veil, when NO hides it.
+ */
+-(void) showBlockingProgressView:(BOOL) show;  
+
+
+/**
+ Initiates the OAuth process. This method is called automatically when the view is initially loaded and should only be called if you want to re-start the authentication sequence.
+ */
+-(void) beginAuthProcess; 
+
+
 @end
 
 //------
