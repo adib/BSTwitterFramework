@@ -119,11 +119,11 @@
         NSLog(@"Error: %@ Result: %@",error,jsonResult); 
         [mainQueue addOperationWithBlock:^{
             if (error) {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",@"Standard Button") otherButtonTitles:nil];
                 [alert show];
             } else {
                 NSString* message = [NSString stringWithFormat:@"You are: %@",[jsonResult objectForKey:@"name"]];
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Success" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Success" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",@"Standard Button") otherButtonTitles:nil];
                 [alert show];
             }
         }];
@@ -148,7 +148,7 @@
         NSLog(@"Error: %@ Result: %@",error,jsonResult); 
         [mainQueue addOperationWithBlock:^{
             if (error) {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",@"Standard Button") otherButtonTitles:nil];
                 [alert show];
             } else {
                 if ([jsonResult isKindOfClass:[NSArray class]]) {
@@ -180,13 +180,13 @@
         NSLog(@"Error: %@ Result: %@",error,jsonResult); 
         [mainQueue addOperationWithBlock:^{
             if (error) {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to send tweet",@"Alert message") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",@"Standard Button") otherButtonTitles:nil];
                 [alert show];
             } else {
                 if ([jsonResult isKindOfClass:[NSDictionary class]]) {
                     NSDictionary* entry = jsonResult;
                     NSString* message = [NSString stringWithFormat:@"TweetID: %@",[entry objectForKey:@"id_str"]];
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Success" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Success" message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK",@"Standard Button") otherButtonTitles:nil];
                     [alert show];
                 }
             }
