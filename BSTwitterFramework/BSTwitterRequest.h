@@ -92,11 +92,20 @@ extern NSString* const BSTwitterRequestErrorDomain;
 extern NSString* const BSTwitterRequestErrorHTTPCodeKey;
 
 /**
+ User info key that states the number of seconds the search should be retried.
+ */
+extern NSString* const BSTwitterRequestErrorRetryAfterKey;
+
+/**
  Error code definitions in the BSTwitterRequestErrorDomain error domain.
  */
 enum BSTwitterRequestError {
     BSTwitterRequestErrorUnknown = -1,
     BSTwitterRequestErrorNone = 0,
+    // Rate-limiting return codes https://dev.twitter.com/docs/rate-limiting
+    BSTwitterRequestErrorRateLimitedAPI = 400,
+    BSTwitterRequestErrorRateLimitedSearch = 420,
+    
     // looks like Twitter uses 502 for "Over Capacity" errors
     BSTwitterRequestErrorOverCapacity = 502,
     BSTwitterRequestErrorServiceUnavailable = 503

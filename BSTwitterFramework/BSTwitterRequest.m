@@ -37,6 +37,9 @@ NSString* const BSTwitterRequestErrorDomain = @"com.basilsalad.BSTwitterFramewor
 
 NSString* const BSTwitterRequestErrorHTTPCodeKey = @"com.basilsalad.BSTwitterFramework.BSTwitterRequestErrorDomain.BSTwitterRequestErrorHTTPCodeKey";
 
+NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterFramework.BSTwitterRequestErrorDomain.BSTwitterRequestErrorRetryAfterKey";
+
+
 @implementation BSTwitterRequest
 
 @synthesize URL = _URL;
@@ -117,79 +120,86 @@ NSString* const BSTwitterRequestErrorHTTPCodeKey = @"com.basilsalad.BSTwitterFra
     [request addRequestHeader:@"Authorization" value:header];
     
     [request setCompletionBlock:^{
+        const int httpStatusOK = 200;
         NSError* jsonError = nil;
         NSData* jsonData = request.responseData;
         id jsonResult = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonError];
-        if (jsonError) {
-            // Twitter responds with an HTML page when the service is down.
-            // in those cases, detect the response code
-            // http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-            int httpStatus = request.responseStatusCode;
-            if (httpStatus == 200) {
+        int httpStatus = request.responseStatusCode;
+
+        // Twitter responds with an HTML page when the service is down.
+        // in those cases, detect the response code
+        // http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+        if (jsonError || httpStatus != httpStatusOK) {
+            if (httpStatus == httpStatusOK) {
                 // HTTP/200 -- OK
                 // just return the JSON error
                 handler(nil,jsonError);
                 return;
             }
             
-            NSMutableDictionary* userInfo = [NSMutableDictionary dictionaryWithCapacity:4];
-            NSInteger errorCode = BSTwitterRequestErrorUnknown;
+            NSMutableDictionary* userInfo = [NSMutableDictionary dictionaryWithCapacity:6];
+            NSInteger errorCode = httpStatus;
             NSString* errorMessage = nil;
+            NSError* returnError = nil;
             switch (httpStatus) {
-                case 502: // HTTP 502 "Bad Gateway"
+                case BSTwitterRequestErrorOverCapacity: // HTTP 502 "Bad Gateway"
                     // looks like Twitter uses 502 for "Over Capacity" errors
-                    errorCode = BSTwitterRequestErrorOverCapacity;
                     errorMessage = NSLocalizedString(@"Twitter is currently over capacity - please try again later", @"Twitter HTTP Error");
                     break;
-                case 503: // HTTP 503 "Service Unavailable"
-                    errorCode = BSTwitterRequestErrorServiceUnavailable;
+                case BSTwitterRequestErrorServiceUnavailable: // HTTP 503 "Service Unavailable"
                     errorMessage = NSLocalizedString(@"Twitter is currently unavailable - please try again later", @"Twitter HTTP Error");
                     break;
+                case BSTwitterRequestErrorRateLimitedAPI:
+                    errorMessage = NSLocalizedString(@"You are being rate-limited by Twitter - please try again some time later.", @"Twitter HTTP Error");
+                    break;
+                case BSTwitterRequestErrorRateLimitedSearch: {
+                    errorMessage = NSLocalizedString(@"Your searches have been rate-limited by Twitter - please try again some time later.", @"Twitter HTTP Error");
+                    // Rate-limiting https://dev.twitter.com/docs/rate-limiting
+                    int retryAfter = [[[request responseHeaders] objectForKey:@"Retry-After"] intValue];
+                    if (retryAfter > 0) {
+                        [userInfo setObject:[NSNumber numberWithInt:retryAfter] forKey:BSTwitterRequestErrorRetryAfterKey];
+                    }
+                }  break;
+                default:
+                    errorCode = BSTwitterRequestErrorUnknown;
+                    if ([jsonResult isKindOfClass:[NSDictionary class]]) {
+                        id twitterErrors = [jsonResult objectForKey:@"errors"];
+                        if ([twitterErrors isKindOfClass:[NSArray class]]) {
+                            returnError = [NSError errorWithTwitterResults:twitterErrors];
+                        }
+                        // singular error for saved search
+                        // example:
+                        // https://dev.twitter.com/docs/using-search
+                        NSString* twitterErrorMessage = [jsonResult objectForKey:@"error"];
+                        if (twitterErrorMessage) {
+                            errorMessage = twitterErrorMessage;
+                        }
+                    }
+                break;
+                    
             }
             
-            [userInfo setObject:[NSNumber numberWithInt:httpStatus] forKey:BSTwitterRequestErrorHTTPCodeKey];            
-            NSURL* url = [request url];
-            if (url) {
-                [userInfo setObject:url forKey:NSURLErrorKey];
-            }
-            
-            if (errorMessage) {
-                [userInfo setObject:errorMessage forKey:NSLocalizedDescriptionKey];
-            }            
-            [userInfo setObject:jsonError forKey:NSUnderlyingErrorKey];
-            
-            NSError* returnError =[NSError errorWithDomain:BSTwitterRequestErrorDomain code:errorCode userInfo:userInfo];
-            handler(nil,returnError);            
-            return;
-        } else if ([jsonResult isKindOfClass:[NSDictionary class]]) {
-            id twitterErrors = [jsonResult objectForKey:@"errors"];
-            if ([twitterErrors isKindOfClass:[NSArray class]]) {
-                NSError* error = [NSError errorWithTwitterResults:twitterErrors];
-                handler(jsonResult,error);
-                return;
-            }
-            // singular error for saved search
-            // example:
-            // https://dev.twitter.com/docs/using-search
-            
-            NSString* errorMessage = [jsonResult objectForKey:@"error"];
-            if (errorMessage) {
-                NSMutableDictionary* userInfo = [NSMutableDictionary dictionaryWithCapacity:3];
-                int httpStatus = request.responseStatusCode;
-
+            if (!returnError) {
                 [userInfo setObject:[NSNumber numberWithInt:httpStatus] forKey:BSTwitterRequestErrorHTTPCodeKey];            
                 NSURL* url = [request url];
                 if (url) {
                     [userInfo setObject:url forKey:NSURLErrorKey];
                 }
-                [userInfo setObject:errorMessage forKey:NSLocalizedDescriptionKey];
-
-                NSError* error = [NSError errorWithDomain:BSTwitterRequestErrorDomain code:BSTwitterRequestErrorUnknown userInfo:userInfo];
-                handler(jsonResult,error);
-                return;
+                
+                if (errorMessage) {
+                    [userInfo setObject:errorMessage forKey:NSLocalizedDescriptionKey];
+                }            
+                if (jsonError) {
+                    [userInfo setObject:jsonError forKey:NSUnderlyingErrorKey];
+                }
+                
+                returnError = [NSError errorWithDomain:BSTwitterRequestErrorDomain code:errorCode userInfo:userInfo];
             }
-        }
-        
+            
+            handler(jsonResult,returnError);            
+            return;
+        }         
         handler(jsonResult,nil);
     }];
     
