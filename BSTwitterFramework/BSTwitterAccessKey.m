@@ -17,6 +17,21 @@
 @synthesize accessTokenSecret;
 
 
+-(id) initWithCoder:(NSCoder *)aDecoder
+{
+    if (!(self = [super init])) {
+        return nil;
+    }
+
+    consumerKey = [aDecoder decodeObjectForKey:@"consumerKey"];
+    consumerSecret = [aDecoder decodeObjectForKey:@"consumerSecret"];
+
+    accessToken = [aDecoder decodeObjectForKey:@"accessToken"];
+    accessTokenSecret = [aDecoder decodeObjectForKey:@"accessTokenSecret"];
+    
+    return self;
+}
+
 -(id)initWithConsumerKey:(NSString *)key consumerSecret:(NSString *)secret
 {
     if (!(self = [super init])) {
@@ -45,6 +60,14 @@
 -(NSString*) description {
     return [NSString stringWithFormat:@"%@ {\n\tconsumerKey:\t%@\n\tconsumerSecret:\t%@\n\taccessToken:\t%@\n\taccessTokenSecret:\t%@\n}",
             [self class],self.consumerKey,self.consumerSecret,self.accessToken,self.accessTokenSecret];
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:consumerKey forKey:@"consumerKey"];
+    [aCoder encodeObject:consumerSecret forKey:@"consumerSecret"];
+    [aCoder encodeObject:accessToken forKey:@"accessToken"];
+    [aCoder encodeObject:accessTokenSecret forKey:@"accessTokenSecret"];
 }
 
 @end

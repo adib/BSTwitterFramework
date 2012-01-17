@@ -14,7 +14,7 @@
  Encapsulate Twitter's OAuth keys and tokens.
  @author Sasmito Adibowo
  */
-@interface BSTwitterAccessKey : NSObject<NSCopying>
+@interface BSTwitterAccessKey : NSObject<NSCopying,NSCoding>
 
 /**
  The Twitter application's Consumer Key string. Initialize this before performing the request.
