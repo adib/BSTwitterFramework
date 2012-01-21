@@ -47,6 +47,11 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
 @synthesize requestMethod = _requestMethod;
 @synthesize twitterAccessKey = _twitterAccessToken;
 
+@synthesize rateLimitLimit = _rateLimitLimit;
+@synthesize rateLimitRemaining = _rateLimitRemaining;
+@synthesize rateLimitReset = _rateLimitReset;
+@synthesize rateLimitOK = _rateLimitOK;
+
 - (id)initWithURL:(NSURL *)url parameters:(NSDictionary *)parameters requestMethod:(BSTwitterRequestMethod)requestMethod
 {
     if (!(self = [super init])) {
@@ -57,6 +62,39 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
     _requestMethod = requestMethod;
     
     return self;
+}
+
+-(void) updateRateLimitsFromRequest:(ASIHTTPRequest*) request
+{
+    NSNull* null = [NSNull null];
+    
+    NSDictionary* responseHeaders = request.responseHeaders;
+    if (!responseHeaders) {
+        return;
+    }
+    
+    _rateLimitOK = YES;
+
+    id rateLimit = [responseHeaders objectForKey:@"X-RateLimit-Limit"];
+    if (rateLimit && rateLimit != null) {
+        _rateLimitLimit = [rateLimit intValue];        
+    } else {
+        _rateLimitOK = NO;
+    }
+    
+    id rateRemaining = [responseHeaders objectForKey:@"X-RateLimit-Remaining"];
+    if (rateRemaining && rateRemaining != null) {
+        _rateLimitRemaining = [rateRemaining intValue];
+    } else {
+        _rateLimitOK = NO;
+    }
+    
+    id rateReset = [responseHeaders objectForKey:@"X-RateLimit-Reset"];
+    if (rateReset && rateReset != null) {
+        _rateLimitReset = [rateReset longLongValue];
+    } else {
+        _rateLimitOK = NO;
+    }
 }
 
 -(void) performRequestWithJSONHandler:(BSTwitterJSONRequestHandler) handler
@@ -120,6 +158,7 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
     [request addRequestHeader:@"Authorization" value:header];
     
     [request setCompletionBlock:^{
+        [self updateRateLimitsFromRequest:request];
         const int httpStatusOK = 200;
         NSError* jsonError = nil;
         NSData* jsonData = request.responseData;
@@ -204,6 +243,7 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
     }];
     
     [request setFailedBlock:^{
+        [self updateRateLimitsFromRequest:request];
         NSError* requestError = request.error;
         if (requestError) {
             handler(nil,requestError);
@@ -211,6 +251,11 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
     }];
     
     [request startAsynchronous];
+}
+
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@ URL=%@ rateLimit: %d rateRemaining: %d rateReset: %@>",[self class],_URL,_rateLimitLimit,_rateLimitRemaining,[NSDate dateWithTimeIntervalSince1970:_rateLimitReset]];
 }
 
 

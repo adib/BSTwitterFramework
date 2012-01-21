@@ -70,6 +70,25 @@ typedef void(^BSTwitterJSONRequestHandler)(id jsonResult, NSError *error);
  */
 @property (nonatomic,strong) BSTwitterAccessKey* twitterAccessKey;
 
+/**
+ If the rate limit values are OK and readable.
+ */
+@property (nonatomic,readonly) BOOL rateLimitOK;
+/**
+ Rate Limit
+ https://dev.twitter.com/docs/rate-limiting/faq
+ */
+@property (nonatomic,readonly) int rateLimitLimit;
+
+/**
+ Remaining API Calls left
+ */
+@property (nonatomic,readonly) int rateLimitRemaining;
+
+/**
+ The time the rate limit will be re-set, in Unix time.
+ */ 
+@property (nonatomic,readonly) int64_t rateLimitReset;
 
 /**
  Executes the HTTP Request asynchronously, parse the JSON data returned and return the JSON result to the handler.
