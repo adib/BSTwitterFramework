@@ -36,6 +36,10 @@
 		C0C695451493817F002F4D30 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C695441493817F002F4D30 /* MobileCoreServices.framework */; };
 		C0C695471493C09C002F4D30 /* sample_splash.html in Resources */ = {isa = PBXBuildFile; fileRef = C0C695461493C09C002F4D30 /* sample_splash.html */; };
 		C0C695491493C34A002F4D30 /* BSWebAuthViewController_Pad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C695481493C34A002F4D30 /* BSWebAuthViewController_Pad.xib */; };
+		C0C6E34014CB076800D80863 /* BSHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = C0C6E33E14CB076800D80863 /* BSHTTPRequest.h */; };
+		C0C6E34114CB076800D80863 /* BSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C6E33F14CB076800D80863 /* BSHTTPRequest.m */; };
+		C0C6E34414CB0DCB00D80863 /* BSFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = C0C6E34214CB0DCB00D80863 /* BSFormDataRequest.h */; };
+		C0C6E34514CB0DCB00D80863 /* BSFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0C6E34314CB0DCB00D80863 /* BSFormDataRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +121,10 @@
 		C0C695441493817F002F4D30 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C0C695461493C09C002F4D30 /* sample_splash.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sample_splash.html; sourceTree = "<group>"; };
 		C0C695481493C34A002F4D30 /* BSWebAuthViewController_Pad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BSWebAuthViewController_Pad.xib; sourceTree = "<group>"; };
+		C0C6E33E14CB076800D80863 /* BSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHTTPRequest.h; sourceTree = "<group>"; };
+		C0C6E33F14CB076800D80863 /* BSHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHTTPRequest.m; sourceTree = "<group>"; };
+		C0C6E34214CB0DCB00D80863 /* BSFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSFormDataRequest.h; sourceTree = "<group>"; };
+		C0C6E34314CB0DCB00D80863 /* BSFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSFormDataRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +245,7 @@
 		C0C3591C14920F6500FF7AF5 = {
 			isa = PBXGroup;
 			children = (
+				C0C6E33D14CB073F00D80863 /* BSHTTPRequest */,
 				C0C695441493817F002F4D30 /* MobileCoreServices.framework */,
 				C0C6954214938167002F4D30 /* CFNetwork.framework */,
 				C07C86731493117F00F01991 /* libz.dylib */,
@@ -299,6 +308,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C0C6E33D14CB073F00D80863 /* BSHTTPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				C0C6E33E14CB076800D80863 /* BSHTTPRequest.h */,
+				C0C6E33F14CB076800D80863 /* BSHTTPRequest.m */,
+				C0C6E34214CB0DCB00D80863 /* BSFormDataRequest.h */,
+				C0C6E34314CB0DCB00D80863 /* BSFormDataRequest.m */,
+			);
+			path = BSHTTPRequest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -306,6 +326,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C6E34014CB076800D80863 /* BSHTTPRequest.h in Headers */,
+				C0C6E34414CB0DCB00D80863 /* BSFormDataRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +453,8 @@
 				C057799F149749A900AE9DB9 /* BSTwitterFramework+Additions.m in Sources */,
 				C05779A0149749AD00AE9DB9 /* BSTwitterAccessKey.m in Sources */,
 				C05779A1149749B800AE9DB9 /* BSWebAuthViewController.m in Sources */,
+				C0C6E34114CB076800D80863 /* BSHTTPRequest.m in Sources */,
+				C0C6E34514CB0DCB00D80863 /* BSFormDataRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

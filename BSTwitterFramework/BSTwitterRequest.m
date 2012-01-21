@@ -8,7 +8,7 @@
 //
 
 #import "BSTwitterRequest.h"
-#import "ASIFormDataRequest.h"
+#import "BSFormDataRequest.h"
 #import "OAuthCore.h"
 #import "OAuth+Additions.h"
 #import "BSTwitterFramework+Additions.h"
@@ -101,7 +101,7 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
 {        
     ASIHTTPRequest*  request_ = nil;
     if (_requestMethod == BSTwitterRequestMethodPOST) {
-        ASIFormDataRequest* formRequest = [ASIFormDataRequest requestWithURL:_URL];
+        ASIFormDataRequest* formRequest = [BSFormDataRequest requestWithURL:_URL];
         for (NSString* key in _parameters) {
             id value = [_parameters objectForKey:key];
             [formRequest setPostValue:value forKey:key];
