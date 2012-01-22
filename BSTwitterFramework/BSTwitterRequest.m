@@ -8,7 +8,7 @@
 //
 
 #import "BSTwitterRequest.h"
-#import "BSFormDataRequest.h"
+#import "ASIFormDataRequest.h"
 #import "OAuthCore.h"
 #import "OAuth+Additions.h"
 #import "BSTwitterFramework+Additions.h"
@@ -101,7 +101,7 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
 {        
     ASIHTTPRequest*  request_ = nil;
     if (_requestMethod == BSTwitterRequestMethodPOST) {
-        ASIFormDataRequest* formRequest = [BSFormDataRequest requestWithURL:_URL];
+        ASIFormDataRequest* formRequest = [ASIFormDataRequest requestWithURL:_URL];
         for (NSString* key in _parameters) {
             id value = [_parameters objectForKey:key];
             [formRequest setPostValue:value forKey:key];
@@ -146,7 +146,8 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
         }
         
     }
-    ASIHTTPRequest __weak* request = request_;
+    
+    ASIHTTPRequest *const request = request_;
     request.useSessionPersistence = NO;
     request.useKeychainPersistence = NO;
     request.useCookiePersistence = NO;
@@ -157,11 +158,22 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
     NSString* header = OAuthorizationHeader([request url], [request requestMethod], [request postBody], accessToken.consumerKey, accessToken.consumerSecret, accessToken.accessToken, accessToken.accessTokenSecret);
     [request addRequestHeader:@"Authorization" value:header];
     
-    [request setCompletionBlock:^{
+    void (^completionBlock)() = ^{
         [self updateRateLimitsFromRequest:request];
         const int httpStatusOK = 200;
         NSError* jsonError = nil;
         NSData* jsonData = request.responseData;
+        if (!jsonData) {
+            NSMutableDictionary* userInfo = [NSMutableDictionary dictionaryWithCapacity:2];
+            [userInfo setObject:NSLocalizedString(@"Empty response from Twitter", @"Twitter request") forKey:NSLocalizedDescriptionKey];
+            NSURL* requestURL = [request url];
+            if (requestURL) {
+                [userInfo setObject:requestURL forKey:NSURLErrorKey];
+            }
+            NSError* error = [NSError errorWithDomain:BSTwitterErrorDomain code:BSTwitterRequestErrorEmptyReply userInfo:userInfo];
+            handler(nil,error);
+            return;
+        }
         id jsonResult = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonError];
         int httpStatus = request.responseStatusCode;
 
@@ -240,14 +252,22 @@ NSString* const BSTwitterRequestErrorRetryAfterKey = @"com.basilsalad.BSTwitterF
             return;
         }         
         handler(jsonResult,nil);
-    }];
+    };
     
-    [request setFailedBlock:^{
+    void (^failedBlock)() = ^{
         [self updateRateLimitsFromRequest:request];
         NSError* requestError = request.error;
         if (requestError) {
             handler(nil,requestError);
         }
+    };
+    NSOperationQueue* sharedQueue = [[request class] sharedQueue];
+    [request setCompletionBlock:^{
+        [sharedQueue addOperationWithBlock:completionBlock];          
+    }];
+    
+    [request setFailedBlock:^{
+        [sharedQueue addOperationWithBlock:failedBlock];          
     }];
     
     [request startAsynchronous];

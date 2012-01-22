@@ -119,6 +119,7 @@ extern NSString* const BSTwitterRequestErrorRetryAfterKey;
  Error code definitions in the BSTwitterRequestErrorDomain error domain.
  */
 enum BSTwitterRequestError {
+    BSTwitterRequestErrorEmptyReply = -2,
     BSTwitterRequestErrorUnknown = -1,
     BSTwitterRequestErrorNone = 0,
     // Rate-limiting return codes https://dev.twitter.com/docs/rate-limiting
