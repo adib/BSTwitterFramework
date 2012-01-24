@@ -8,7 +8,7 @@
 //
 
 #import "BSAppDelegate.h"
-
+#import "Three20.h"
 #import "BSMainViewController.h"
 
 @implementation BSAppDelegate
