@@ -7,6 +7,7 @@
 //  http://basil-salad.com
 //
 
+#import "FoundationAdditionsMacros.h"
 #import "BSAppDelegate.h"
 #import "Three20.h"
 #import "BSMainViewController.h"
@@ -63,6 +64,18 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    DebugLog(@"openURL: %@ source: %@",url,sourceApplication);
+    return NO;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    DebugLog(@"openURL: %@",url);
+    return NO;
 }
 
 @end
