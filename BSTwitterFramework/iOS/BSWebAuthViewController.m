@@ -106,7 +106,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     showingShade = show;
 }
 
-+(BSWebAuthViewController*) instantiate 
++(id) new 
 {
     BOOL isPad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
     BSWebAuthViewController* ctrl = [[self alloc] initWithNibName: isPad ? @"BSWebAuthViewController_Pad" : @"BSWebAuthViewController_Phone" bundle:nil];

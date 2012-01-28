@@ -119,7 +119,7 @@
  The designated factory method.
  Creates and initializes the view controller.
  */
-+(BSWebAuthViewController*) instantiate;
++(id) new;
 
 
 /**
