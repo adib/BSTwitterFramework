@@ -84,23 +84,25 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     if (show) {
         shade.alpha = 0;
         [self.view insertSubview:shade aboveSubview:self.mainWebView];        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:animationDuration];
-        shade.alpha = shadeTargetAlpha;
-        [UIView commitAnimations];        
-        [self.shadeActivityIndicatorView startAnimating];
+        [UIView animateWithDuration:animationDuration animations:^{
+            shade.alpha = shadeTargetAlpha;
+        } completion:^(BOOL finished) {
+            [self.shadeActivityIndicatorView startAnimating];
+        }];
     } else {
         [self.shadeActivityIndicatorView stopAnimating];
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:animationDuration];
-        shade.alpha = 0;
-        [UIView commitAnimations];
-        void (^removeShade)() = ^() {
+        
+        [UIView animateWithDuration:animationDuration animations:^{
+            shade.alpha = 0;
+        } completion:^(BOOL finished) {
             if (!showingShade) {
                 [shade removeFromSuperview];
             }
-        };
-        [[NSOperationQueue mainQueue] performSelector:@selector(addOperationWithBlock:) withObject:removeShade afterDelay:animationDuration];
+        }];
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        [UIView commitAnimations];
     }
     
     showingShade = show;
@@ -129,8 +131,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     NSOperationQueue* mainQueue = [NSOperationQueue mainQueue];
     NSString* authorizeURLString = [self.authorizeURL absoluteString];
     
-    ASIFormDataRequest*  request_ = [ASIFormDataRequest requestWithURL:self.requestTokenURL];
-    ASIFormDataRequest __weak* request = request_;
+    ASIFormDataRequest*  request = [ASIFormDataRequest requestWithURL:self.requestTokenURL];
     request.useSessionPersistence = NO;
     request.useKeychainPersistence = NO;
     request.useCookiePersistence = NO;
@@ -138,7 +139,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     NSString* header = OAuthorizationHeader([request url], [request requestMethod], [request postBody], self.consumerKey, self.consumerSecret, @"", @"");
     [request addRequestHeader:@"Authorization" value:header];
     
-    [request setCompletionBlock:^{
+    void (^completionBlock)() = ^{
         NSMutableDictionary* resultDict = [NSMutableDictionary dictionaryWithCapacity:3];
         NSString* responseString = request.responseString;
         NSArray* components = [responseString componentsSeparatedByString:@"&"];
@@ -152,7 +153,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
         BOOL callbackConfirmed = [[resultDict objectForKey:@"oauth_callback_confirmed"] boolValue];
         NSString* token = [resultDict objectForKey:@"oauth_token"];
         NSString* tokenSecret = [resultDict objectForKey:@"oauth_token_secret"];
-
+        
         if (callbackConfirmed) {
             NSString* requestString = [NSString stringWithFormat:@"%@?force_login=true&oauth_token=%@",authorizeURLString,token];
             NSURL* requestURL = [NSURL URLWithString:requestString];
@@ -160,7 +161,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
                 
                 requestToken = token;
                 requestTokenSecret = tokenSecret;
-
+                
                 NSURLRequest* authorizeRequest = [NSURLRequest requestWithURL:requestURL];  
                 [self.mainWebView loadRequest:authorizeRequest];
             }];
@@ -174,16 +175,19 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
                 [self.delegate webAuthViewController:self didFailWithError:error];
             }];
         }
-    }];
+    };
     
-    [request setFailedBlock:^{
+    void (^failedBlock)() = ^{
         NSError* error = request.error;
         [mainQueue addOperationWithBlock:^{
             [self.delegate webAuthViewController:self didFailWithError:error];
         }];
-    }];
+    };
+    
     
     [self showBlockingProgressView:YES];    
+    [request setCompletionBlock:completionBlock];
+    [request setFailedBlock:failedBlock];
     [request startAsynchronous];
 }
 
@@ -194,8 +198,7 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     
     NSString* accessTokenURLString = [self.accessTokenURL absoluteString];
     NSURL* requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?oauth_verifier=%@",accessTokenURLString,verifier]];
-    ASIFormDataRequest*  request_ = [ASIFormDataRequest requestWithURL:requestURL];
-    ASIFormDataRequest __weak* request = request_;
+    ASIFormDataRequest*  request = [ASIFormDataRequest requestWithURL:requestURL];
     request.useSessionPersistence = NO;
     request.useKeychainPersistence = NO;
     request.useCookiePersistence = NO;
@@ -203,10 +206,10 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
     NSString* header = OAuthorizationHeader([request url], [request requestMethod], [request postBody], self.consumerKey, self.consumerSecret, requestToken, requestTokenSecret);
     [request addRequestHeader:@"Authorization" value:header];
 
-    [request setCompletionBlock:^{
+    void (^completionBlock)() = ^{
         NSString* responseString = request.responseString;
         NSDictionary* parameterDict = [NSURL ab_parseURLQueryString:responseString];
-
+        
         NSString* token = [parameterDict objectForKey:@"oauth_token"];
         NSString* tokenSecret = [parameterDict objectForKey:@"oauth_token_secret"];        
         [mainQueue addOperationWithBlock:^{
@@ -215,14 +218,18 @@ NSString* const BSWebAuthViewControllerErrorDomain = @"com.basilsalad.BSWebAuthV
             [self.delegate webAuthViewController:self didCompleteWithResponseDictionary:parameterDict];
             //[self showBlockingProgressView:NO];
         }];
-    }];
-    [request setFailedBlock:^{
+    };
+    
+    void (^failedBlock)() = ^{
         NSError* error = request.error;
         [mainQueue addOperationWithBlock:^{
             [self showBlockingProgressView:NO];
             [self.delegate webAuthViewController:self didFailWithError:error];
         }];
-    }];
+    };
+    
+    [request setCompletionBlock:completionBlock];
+    [request setFailedBlock:failedBlock];
     
     [self showBlockingProgressView:YES];
     [request startAsynchronous];
